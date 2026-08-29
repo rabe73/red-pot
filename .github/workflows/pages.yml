@@ -23,6 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enable Pages for this run
+        # Part of GitHub's own Pages workflow and omitted here by mistake. It is
+        # what initialises Pages for the run and hands deploy-pages what it
+        # needs; without it the deploy job can be rejected before it starts,
+        # which is exactly the symptom seen -- three seconds, no steps, no logs.
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
       - name: Build
         run: python3 build.py
       - name: Every built page must be well-formed
