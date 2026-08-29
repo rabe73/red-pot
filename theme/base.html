@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="canonical" href="{{canonical}}">
+{{alternates}}
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{canonical}}">
+<meta property="og:locale" content="{{lang}}">
+<link rel="stylesheet" href="{{root}}style.css">
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+<header>
+  <a class="brand" href="{{root}}{{lang}}/">Red&nbsp;Pot</a>
+  <nav aria-label="{{navLabel}}">{{nav}}</nav>
+</header>
+<main id="main">
+{{content}}
+</main>
+<footer>
+  <nav aria-label="{{langLabel}}" class="langs">{{langs}}</nav>
+  <p class="fine">© {{year}} Red Pot</p>
+</footer>
+</body>
+</html>
