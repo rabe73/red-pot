@@ -6,9 +6,13 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Deploy needs these; the build job below runs with the default read-only token.
+# All three at workflow level, matching GitHub's own Pages starter workflow.
+# A job-level permissions block REPLACES this one rather than adding to it, so
+# overriding it on the deploy job silently dropped contents: read there.
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
@@ -45,9 +49,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
