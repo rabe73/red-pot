@@ -152,6 +152,11 @@ def build(check_only=False):
                     ("canonical", canonical), ("alternates", alts),
                     ("root", "../"), ("skip", ui["skip"]),
                     ("baseUrl", base_url),
+                    ("robots", '<meta name="robots" content="noindex">\n'
+                     if site.get("underConstruction") else ""),
+                    ("construction",
+                     '<p class="construction">%s</p>\n' % ui["construction"]
+                     if site.get("underConstruction") else ""),
                     ("navLabel", site["name"]), ("nav", nav),
                     ("langLabel", ui["langLabel"]), ("langs", langs),
                     ("content", fragment.strip()),
@@ -164,8 +169,13 @@ def build(check_only=False):
         write(os.path.join(out, "index.html"), root_page(site, built))
         write(os.path.join(out, "404.html"), root_page(site, built, notfound=True))
         write(os.path.join(out, "sitemap.xml"), sitemap(urls))
-        write(os.path.join(out, "robots.txt"),
-              "User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n" % base_url)
+        if site.get("underConstruction"):
+            # Belt and braces with the per-page noindex: a construction site
+            # indexed now would outrank the finished one later.
+            write(os.path.join(out, "robots.txt"), "User-agent: *\nDisallow: /\n")
+        else:
+            write(os.path.join(out, "robots.txt"),
+                  "User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n" % base_url)
 
     return site, built, missing, len(urls)
 
@@ -182,13 +192,15 @@ def root_page(site, built, notfound=False):
         '  <li><a href="%s/" lang="%s" hreflang="%s">%s</a></li>'
         % (l, l, l, site["locales"][l]["name"]) for l in built)
     fallback = site["fallbackLocale"]
+    noindex = ('<meta name="robots" content="noindex">\n'
+               if site.get("underConstruction") else "")
     return """<!doctype html>
 <html lang="%s">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%s</title>
-<link rel="canonical" href="%s/%s/">
+%s<link rel="canonical" href="%s/%s/">
 %s
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="icon" href="assets/favicon-16.png" sizes="16x16">
@@ -218,7 +230,7 @@ def root_page(site, built, notfound=False):
 </html>
 """ % (fallback,
        "Red Pot" if not notfound else "Red Pot — 404",
-       site["baseUrl"].rstrip("/"), fallback,
+       noindex, site["baseUrl"].rstrip("/"), fallback,
        "\n".join('<link rel="alternate" hreflang="%s" href="%s/%s/">'
                  % (l, site["baseUrl"].rstrip("/"), l) for l in built),
        json.dumps(built), json.dumps(fallback),
