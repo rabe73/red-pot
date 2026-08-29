@@ -66,3 +66,12 @@ th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(-
 footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; padding-bottom: 3rem; }
 .langs { margin-bottom: .5rem; }
 .fine { color: var(--muted); font-size: .85rem; margin: 0; }
+
+/* Under construction. Deliberately unmissable and deliberately not dismissible:
+   it is on the privacy and imprint pages too, which are the ones that look most
+   like a finished product. */
+.construction {
+  background: var(--accent); color: var(--accent-fg);
+  font-size: .9rem; line-height: 1.4; text-align: center;
+  padding: .55rem 1.25rem;
+}

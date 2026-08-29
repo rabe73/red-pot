@@ -3,32 +3,118 @@
   "baseUrl": "https://rabe73.github.io/red-pot",
   "sourceLocale": "de",
   "fallbackLocale": "en",
-  "requiredLocales": ["de", "en"],
-  "plannedLocales": ["fr", "es", "it"],
+  "requiredLocales": [
+    "de",
+    "en"
+  ],
+  "plannedLocales": [
+    "fr",
+    "es",
+    "it"
+  ],
   "_comment": "requiredLocales must be complete or the build fails. plannedLocales are the remaining launch languages (product plan section 2); they are translated shortly before the first release, together, exactly as the corpus is (app repository, ADR 0017). A locale is built only when every page exists in it -- half a language is worse than none, because the browser's fallback never fires for a language that appears to exist.",
   "locales": {
-    "de": {"name": "Deutsch",  "dir": "ltr"},
-    "en": {"name": "English",  "dir": "ltr"},
-    "fr": {"name": "Français", "dir": "ltr"},
-    "es": {"name": "Español",  "dir": "ltr"},
-    "it": {"name": "Italiano", "dir": "ltr"}
+    "de": {
+      "name": "Deutsch",
+      "dir": "ltr"
+    },
+    "en": {
+      "name": "English",
+      "dir": "ltr"
+    },
+    "fr": {
+      "name": "Français",
+      "dir": "ltr"
+    },
+    "es": {
+      "name": "Español",
+      "dir": "ltr"
+    },
+    "it": {
+      "name": "Italiano",
+      "dir": "ltr"
+    }
   },
   "pages": [
-    {"slug": "index",   "nav": true},
-    {"slug": "privacy", "nav": true},
-    {"slug": "support", "nav": true},
-    {"slug": "imprint", "nav": true}
+    {
+      "slug": "index",
+      "nav": true
+    },
+    {
+      "slug": "privacy",
+      "nav": true
+    },
+    {
+      "slug": "support",
+      "nav": true
+    },
+    {
+      "slug": "imprint",
+      "nav": true
+    }
   ],
   "ui": {
-    "de": {"nav": {"index": "Start", "privacy": "Datenschutz", "support": "Hilfe", "imprint": "Impressum"},
-           "skip": "Zum Inhalt springen", "langLabel": "Sprache", "draft": "Entwurf — juristisch noch nicht geprüft."},
-    "en": {"nav": {"index": "Home", "privacy": "Privacy", "support": "Support", "imprint": "Imprint"},
-           "skip": "Skip to content", "langLabel": "Language", "draft": "Draft — not yet reviewed by a lawyer."},
-    "fr": {"nav": {"index": "Accueil", "privacy": "Confidentialité", "support": "Aide", "imprint": "Mentions légales"},
-           "skip": "Aller au contenu", "langLabel": "Langue", "draft": "Brouillon — pas encore relu juridiquement."},
-    "es": {"nav": {"index": "Inicio", "privacy": "Privacidad", "support": "Ayuda", "imprint": "Aviso legal"},
-           "skip": "Ir al contenido", "langLabel": "Idioma", "draft": "Borrador — pendiente de revisión legal."},
-    "it": {"nav": {"index": "Home", "privacy": "Privacy", "support": "Assistenza", "imprint": "Note legali"},
-           "skip": "Vai al contenuto", "langLabel": "Lingua", "draft": "Bozza — non ancora verificata legalmente."}
-  }
+    "de": {
+      "nav": {
+        "index": "Start",
+        "privacy": "Datenschutz",
+        "support": "Hilfe",
+        "imprint": "Impressum"
+      },
+      "skip": "Zum Inhalt springen",
+      "langLabel": "Sprache",
+      "draft": "Entwurf — juristisch noch nicht geprüft.",
+      "construction": "Red&nbsp;Pot ist in Entwicklung. Die App ist noch nicht erhältlich, und diese Seite ist eine Baustelle."
+    },
+    "en": {
+      "nav": {
+        "index": "Home",
+        "privacy": "Privacy",
+        "support": "Support",
+        "imprint": "Imprint"
+      },
+      "skip": "Skip to content",
+      "langLabel": "Language",
+      "draft": "Draft — not yet reviewed by a lawyer.",
+      "construction": "Red&nbsp;Pot is under construction. The app is not available yet, and neither is this site finished."
+    },
+    "fr": {
+      "nav": {
+        "index": "Accueil",
+        "privacy": "Confidentialité",
+        "support": "Aide",
+        "imprint": "Mentions légales"
+      },
+      "skip": "Aller au contenu",
+      "langLabel": "Langue",
+      "draft": "Brouillon — pas encore relu juridiquement.",
+      "construction": "Red&nbsp;Pot est en construction. L’application n’est pas encore disponible et ce site non plus."
+    },
+    "es": {
+      "nav": {
+        "index": "Inicio",
+        "privacy": "Privacidad",
+        "support": "Ayuda",
+        "imprint": "Aviso legal"
+      },
+      "skip": "Ir al contenido",
+      "langLabel": "Idioma",
+      "draft": "Borrador — pendiente de revisión legal.",
+      "construction": "Red&nbsp;Pot está en construcción. La aplicación aún no está disponible, ni este sitio terminado."
+    },
+    "it": {
+      "nav": {
+        "index": "Home",
+        "privacy": "Privacy",
+        "support": "Assistenza",
+        "imprint": "Note legali"
+      },
+      "skip": "Vai al contenuto",
+      "langLabel": "Lingua",
+      "draft": "Bozza — non ancora verificata legalmente.",
+      "construction": "Red&nbsp;Pot è in costruzione. L’app non è ancora disponibile e nemmeno questo sito è finito."
+    }
+  },
+  "underConstruction": true,
+  "_underConstruction": "One switch, two effects: it shows the banner on every page and adds <meta name=\"robots\" content=\"noindex\">. A site describing an app nobody can download yet should say so on the privacy and imprint pages too, not only on the front page -- those are the ones that look most like a finished product. And a half-written page indexed now outranks the finished one later. Set it to false on launch day; nothing else changes."
 }

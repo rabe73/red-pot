@@ -70,6 +70,18 @@ That split is deliberate. The privacy and support URLs are the ones an App Store
 reviewer opens, and a broken build should fail in CI rather than on the live
 page.
 
+## Under construction
+
+`underConstruction` in `content/site.json` is one switch with two effects: a
+banner on every page, and `noindex` plus a disallow-all `robots.txt`.
+
+Both matter while the app does not exist. The banner belongs on the privacy and
+imprint pages as much as on the front page — those are the ones that look most
+like a finished product. And a half-written page indexed now would outrank the
+finished one later.
+
+Set it to `false` on launch day. Nothing else changes.
+
 ## Status
 
 Content is a first draft. The imprint and privacy pages carry the real provider
