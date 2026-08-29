@@ -20,6 +20,11 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SVG = os.path.join(ROOT, "brand", "icon.svg")
+# The same mark without the lettering. Below about 48 pixels the monogram's
+# counters close up and it reads as damage rather than as letters, so the small
+# sizes use the pot alone. Nothing above that size needs it.
+MARK = os.path.join(ROOT, "brand", "mark.svg")
+MARK_BELOW = 48
 OUT = os.path.join(ROOT, "assets")
 CREAM = (0xFE, 0xF2, 0xE2)
 
@@ -29,9 +34,10 @@ NAMES = {512: "logo-512.png", 180: "apple-touch-icon.png",
          32: "favicon-32.png", 16: "favicon-16.png"}
 
 
-def render(size, path):
+def render(size, path, src=None):
     subprocess.run(["rsvg-convert", "-w", str(size), "-h", str(size),
-                    SVG, "-o", path], check=True)
+                    src or (MARK if size < MARK_BELOW else SVG), "-o", path],
+                   check=True)
 
 
 def main():
@@ -39,12 +45,13 @@ def main():
     for size, explicit in SIZES:
         path = explicit or os.path.join(OUT, NAMES[size])
         render(size, path)
-        print("  %4d  %s" % (size, os.path.relpath(path, ROOT)))
+        print("  %4d  %-28s %s" % (size, os.path.relpath(path, ROOT),
+                                   "mark" if size < MARK_BELOW else "icon"))
 
     # Open Graph card: the mark on the same cream, at the ratio every
     # link-preview crops to.
     tmp = os.path.join(OUT, "_mark.png")
-    render(420, tmp)
+    render(420, tmp, SVG)
     og = Image.new("RGB", (1200, 630), CREAM)
     og.paste(Image.open(tmp).convert("RGB"), ((1200 - 420) // 2, (630 - 420) // 2))
     og.save(os.path.join(OUT, "og-image.png"))

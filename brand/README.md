@@ -5,6 +5,7 @@ Source of truth for the app icon and every derived image on the site.
 | File | What it is |
 |---|---|
 | `icon.svg` | **The source.** 3 KB of vector, full-bleed, two flat colours |
+| `mark.svg` | The same pot without the lettering, for small sizes |
 | `icon-1024.png` | Rendered from it for the App Store icon |
 | `logo-original.png` | The delivered JPEG artwork, kept for reference |
 
@@ -46,11 +47,17 @@ Two of the three problems the delivered file had are gone: it is no longer a
 JPEG, and the corners are no longer pre-rounded — `icon.svg` is full-bleed, so
 iOS's own mask is the only rounding applied.
 
-**The monogram still will not survive a favicon.** At 32 px, and on a home screen, the
-letters inside the pot become texture rather than letters. That is not a fault
-in the drawing — it is what happens to any mark with interior detail at that
-size, and rendering from the vector helps the edges without helping the
-counters. If a small size matters, the usual answer is a second, simpler cut of
-the mark: the pot silhouette alone, no lettering. With `icon.svg` that is now a
-five-minute edit — delete the letter paths — but it is a design decision and has
-deliberately not been made here.
+**The monogram does not survive a favicon, and no longer has to.** At 32 px the
+letters' counters close up and the mark reads as damage rather than as letters —
+what happens to anything with interior detail at that size, and rendering from
+the vector helps the edges without helping the counters.
+
+`mark.svg` is the answer: the same pot, lettering removed. It was not redrawn
+either. The monogram is the one enclosed cream region in the artwork larger than
+10 000 pixels — the two handle openings are an order of magnitude smaller and the
+rim gap is open to the background — so it can be filled by size and position
+rather than by hand, and the result re-traced.
+
+`tools/makeicons.py` uses `mark.svg` below 48 px and `icon.svg` at and above it.
+The 180 px apple-touch-icon keeps the full logo, so a home-screen bookmark
+matches the app icon.
