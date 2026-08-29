@@ -101,6 +101,7 @@ def build(check_only=False):
         shutil.rmtree(out, ignore_errors=True)
         os.makedirs(out)
         shutil.copy(os.path.join(THEME, "style.css"), os.path.join(out, "style.css"))
+        shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(out, "assets"))
         # GitHub Pages runs Jekyll over the artifact unless told not to, and
         # Jekyll silently drops files and directories beginning with an
         # underscore. Nothing here starts with one today; the file costs nothing
@@ -150,6 +151,7 @@ def build(check_only=False):
                     ("title", title), ("description", desc),
                     ("canonical", canonical), ("alternates", alts),
                     ("root", "../"), ("skip", ui["skip"]),
+                    ("baseUrl", base_url),
                     ("navLabel", site["name"]), ("nav", nav),
                     ("langLabel", ui["langLabel"]), ("langs", langs),
                     ("content", fragment.strip()),
@@ -188,6 +190,9 @@ def root_page(site, built, notfound=False):
 <title>%s</title>
 <link rel="canonical" href="%s/%s/">
 %s
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+<link rel="icon" href="assets/favicon-16.png" sizes="16x16">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
 <script>
 (function () {

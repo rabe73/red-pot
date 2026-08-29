@@ -1,16 +1,20 @@
 /* One stylesheet, no build step, no framework. The site is text. */
 :root {
   color-scheme: light dark;
-  --bg: #fdfcfa;
+  /* Sampled from brand/icon-1024.png, so the site and the app icon are the
+     same red rather than two reds that nearly match. */
+  --bg: #fdfaf4;
   --fg: #1c1a18;
   --muted: #5d5751;
-  --rule: #e3ded7;
-  --accent: #a8341f;      /* the pot */
-  --accent-fg: #ffffff;
+  --rule: #e8e0d3;
+  --accent: #d4101a;      /* the pot */
+  --accent-fg: #fef2e2;   /* the card behind it */
   --measure: 34rem;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg:#171614; --fg:#eae6e0; --muted:#a49d95; --rule:#332f2b; --accent:#e8836b; }
+  /* The brand red is too dark to read on a dark ground; lift it rather than
+     invent a second colour. Same hue, more light. */
+  :root { --bg:#17140f; --fg:#ece6dc; --muted:#a89f92; --rule:#332d25; --accent:#f26a5c; }
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -33,9 +37,11 @@ header {
   padding-top: 2rem; padding-bottom: 1.25rem;
 }
 .brand {
+  display: inline-flex; align-items: center; gap: .5rem;
   font-weight: 700; font-size: 1.15rem; letter-spacing: .01em;
   color: var(--accent); text-decoration: none;
 }
+.brand img { width: 1.9rem; height: 1.9rem; border-radius: .42rem; display: block; }
 nav a { color: var(--muted); text-decoration: none; margin-right: 1rem; font-size: .95rem; }
 nav a:last-child { margin-right: 0; }
 nav a[aria-current="page"] { color: var(--fg); text-decoration: underline; }
