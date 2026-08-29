@@ -14,9 +14,16 @@ content/
 theme/
 ├── base.html        the page skeleton
 └── style.css
+brand/               the icon, and where its colours come from
+assets/              generated images — do not edit by hand
 build.py             wraps fragments, writes dist/
 tools/checkhtml.py   fails on malformed HTML
+tools/makeicons.py   regenerates assets/ from brand/ (needs Pillow)
 ```
+
+The site build is dependency-free and runs in CI. `makeicons.py` needs Pillow
+and runs by hand on the rare occasion the artwork changes; its output is
+committed, so CI never installs anything.
 
 ## Build
 
@@ -65,7 +72,11 @@ page.
 
 ## Status
 
-Content is a first draft. The imprint is a placeholder and must be filled in
+Content is a first draft. `brand/README.md` lists three things about the icon
+that need fixing before submission — it is a JPEG, its corners are pre-rounded
+where iOS will round them again, and the monogram does not survive a favicon.
+
+ The imprint is a placeholder and must be filled in
 before publishing — a German imprint with missing details is actionable. The
 privacy text describes the real architecture but has not been reviewed by a
 lawyer.
