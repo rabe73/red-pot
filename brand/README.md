@@ -4,11 +4,33 @@ Source of truth for the app icon and every derived image on the site.
 
 | File | What it is |
 |---|---|
-| `logo-original.png` | The delivered artwork, converted from JPEG to PNG once, losslessly from here on |
-| `icon-1024.png` | Full-bleed square for the App Store — the baked-in rounded corners filled with the card colour |
+| `icon.svg` | **The source.** 3 KB of vector, full-bleed, two flat colours |
+| `icon-1024.png` | Rendered from it for the App Store icon |
+| `logo-original.png` | The delivered JPEG artwork, kept for reference |
 
-Site images in `../assets/` are generated from `icon-1024.png` by
+Everything in `../assets/` and `icon-1024.png` is rendered from `icon.svg` by
 `tools/makeicons.py`. Do not edit them by hand.
+
+## How the vector was made
+
+The artwork arrived as a 1024×1024 JPEG. It was recovered rather than redrawn:
+
+1. Every pixel classified as pot-red or card-cream by nearest colour — not by a
+   luminance threshold, which turns JPEG ringing into speckle along every edge.
+2. A 5×5 median filter to drop the remaining isolated pixels without moving real
+   edges.
+3. `potrace` over the resulting bitmap, `--alphamax 1.0 --opttolerance 0.2`.
+4. The traced path dropped onto a full-bleed cream square at the brand red.
+
+**It is 0.12 % different from the original by pixel classification**, which is
+edge smoothing, and it is better than the original in three ways: no JPEG
+ringing, no baked-in rounded corners, and every size rendered from the vector
+instead of resampled from one bitmap. The 1024 PNG went from 260 kB to 38 kB
+because most of that file was compression noise.
+
+It is still a **reconstruction**. If the original vector file exists, use it —
+a trace inherits whatever the JPEG lost, and no measurement of the JPEG can
+find that.
 
 ## Colours
 
@@ -18,24 +40,17 @@ Site images in `../assets/` are generated from `icon-1024.png` by
 | Card cream | `#FEF2E2` | the ground the pot sits on |
 | Lifted red | `#F26A5C` | `--accent` in dark mode — the brand red is too dark to read on a dark ground, so it is lifted rather than replaced |
 
-## Three things to fix before submission
+## What is now fixed, and what is not
 
-**The source is a JPEG.** Flat colour and hard edges are the worst case for JPEG,
-and the artwork carries visible ringing along the pot's outline at full size.
-Apple wants a 1024×1024 PNG with no alpha for the App Store icon, and everything
-here is regenerated from that one file. Re-export the artwork as PNG — or better
-as SVG, since the shape is flat vector work and would then scale to every size
-without a resampling step at all.
+Two of the three problems the delivered file had are gone: it is no longer a
+JPEG, and the corners are no longer pre-rounded — `icon.svg` is full-bleed, so
+iOS's own mask is the only rounding applied.
 
-**The corners are pre-rounded, and iOS rounds again.** The delivered file is a
-cream card with rounded corners on white. iOS applies its own mask, so a
-pre-rounded icon is rounded twice and shows white slivers outside the card.
-`icon-1024.png` fixes it by flooding that white with the card colour — a repair,
-not a design. The artwork should be re-exported full-bleed to the edge.
-
-**The monogram will not survive a favicon.** At 32 px, and on a home screen, the
+**The monogram still will not survive a favicon.** At 32 px, and on a home screen, the
 letters inside the pot become texture rather than letters. That is not a fault
 in the drawing — it is what happens to any mark with interior detail at that
-size. If a small size matters, the usual answer is a second, simpler cut of the
-mark: the pot silhouette alone, no lettering. That is a design decision and has
+size, and rendering from the vector helps the edges without helping the
+counters. If a small size matters, the usual answer is a second, simpler cut of
+the mark: the pot silhouette alone, no lettering. With `icon.svg` that is now a
+five-minute edit — delete the letter paths — but it is a design decision and has
 deliberately not been made here.

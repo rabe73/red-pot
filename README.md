@@ -21,8 +21,8 @@ tools/checkhtml.py   fails on malformed HTML
 tools/makeicons.py   regenerates assets/ from brand/ (needs Pillow)
 ```
 
-The site build is dependency-free and runs in CI. `makeicons.py` needs Pillow
-and runs by hand on the rare occasion the artwork changes; its output is
+The site build is dependency-free and runs in CI. `makeicons.py` needs
+`rsvg-convert` (librsvg2-bin) and Pillow, and runs by hand on the rare occasion the artwork changes; its output is
 committed, so CI never installs anything.
 
 ## Build
@@ -72,9 +72,11 @@ page.
 
 ## Status
 
-Content is a first draft. `brand/README.md` lists three things about the icon
-that need fixing before submission — it is a JPEG, its corners are pre-rounded
-where iOS will round them again, and the monogram does not survive a favicon.
+Content is a first draft. The imprint and privacy pages carry the real provider
+details; only the contact email address is still a placeholder. `brand/README.md`
+records the one remaining icon question — the monogram does not survive a
+favicon, and a simpler small-size cut of the mark is a design decision nobody
+has made yet.
 
  The imprint is a placeholder and must be filled in
 before publishing — a German imprint with missing details is actionable. The
