@@ -1,0 +1,62 @@
+/* One stylesheet, no build step, no framework. The site is text. */
+:root {
+  color-scheme: light dark;
+  --bg: #fdfcfa;
+  --fg: #1c1a18;
+  --muted: #5d5751;
+  --rule: #e3ded7;
+  --accent: #a8341f;      /* the pot */
+  --accent-fg: #ffffff;
+  --measure: 34rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#171614; --fg:#eae6e0; --muted:#a49d95; --rule:#332f2b; --accent:#e8836b; }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1.0625rem/1.65 ui-serif, Georgia, "Iowan Old Style", serif;
+}
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--accent); color: var(--accent-fg);
+  padding: .6rem 1rem; z-index: 10;
+}
+.skip:focus { left: .5rem; top: .5rem; }
+header, main, footer { max-width: var(--measure); margin: 0 auto; padding: 0 1.25rem; }
+header {
+  display: flex; flex-wrap: wrap; gap: .75rem 1.5rem;
+  align-items: baseline; justify-content: space-between;
+  padding-top: 2rem; padding-bottom: 1.25rem;
+}
+.brand {
+  font-weight: 700; font-size: 1.15rem; letter-spacing: .01em;
+  color: var(--accent); text-decoration: none;
+}
+nav a { color: var(--muted); text-decoration: none; margin-right: 1rem; font-size: .95rem; }
+nav a:last-child { margin-right: 0; }
+nav a[aria-current="page"] { color: var(--fg); text-decoration: underline; }
+nav a:hover, nav a:focus-visible, a:hover, a:focus-visible { color: var(--accent); }
+main { padding-bottom: 3rem; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 1.5rem 0 .75rem; }
+h2 { font-size: 1.25rem; margin: 2.25rem 0 .5rem; }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .35rem; }
+p, li { max-width: 100%; }
+ul, ol { padding-left: 1.15rem; }
+li { margin: .3rem 0; }
+a { color: var(--accent); }
+.lede { font-size: 1.15rem; color: var(--muted); }
+.note {
+  border-left: 3px solid var(--accent);
+  padding: .5rem 0 .5rem .9rem; margin: 1.5rem 0;
+  color: var(--muted); font-size: .95rem;
+}
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.wrap { overflow-x: auto; }
+footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; padding-bottom: 3rem; }
+.langs { margin-bottom: .5rem; }
+.fine { color: var(--muted); font-size: .85rem; margin: 0; }

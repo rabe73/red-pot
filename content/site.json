@@ -1,0 +1,34 @@
+{
+  "name": "Red Pot",
+  "baseUrl": "https://rabe73.github.io/red-pot",
+  "sourceLocale": "de",
+  "fallbackLocale": "en",
+  "requiredLocales": ["de", "en"],
+  "plannedLocales": ["fr", "es", "it"],
+  "_comment": "requiredLocales must be complete or the build fails. plannedLocales are the remaining launch languages (product plan section 2); they are translated shortly before the first release, together, exactly as the corpus is (app repository, ADR 0017). A locale is built only when every page exists in it -- half a language is worse than none, because the browser's fallback never fires for a language that appears to exist.",
+  "locales": {
+    "de": {"name": "Deutsch",  "dir": "ltr"},
+    "en": {"name": "English",  "dir": "ltr"},
+    "fr": {"name": "Français", "dir": "ltr"},
+    "es": {"name": "Español",  "dir": "ltr"},
+    "it": {"name": "Italiano", "dir": "ltr"}
+  },
+  "pages": [
+    {"slug": "index",   "nav": true},
+    {"slug": "privacy", "nav": true},
+    {"slug": "support", "nav": true},
+    {"slug": "imprint", "nav": true}
+  ],
+  "ui": {
+    "de": {"nav": {"index": "Start", "privacy": "Datenschutz", "support": "Hilfe", "imprint": "Impressum"},
+           "skip": "Zum Inhalt springen", "langLabel": "Sprache", "draft": "Entwurf — juristisch noch nicht geprüft."},
+    "en": {"nav": {"index": "Home", "privacy": "Privacy", "support": "Support", "imprint": "Imprint"},
+           "skip": "Skip to content", "langLabel": "Language", "draft": "Draft — not yet reviewed by a lawyer."},
+    "fr": {"nav": {"index": "Accueil", "privacy": "Confidentialité", "support": "Aide", "imprint": "Mentions légales"},
+           "skip": "Aller au contenu", "langLabel": "Langue", "draft": "Brouillon — pas encore relu juridiquement."},
+    "es": {"nav": {"index": "Inicio", "privacy": "Privacidad", "support": "Ayuda", "imprint": "Aviso legal"},
+           "skip": "Ir al contenido", "langLabel": "Idioma", "draft": "Borrador — pendiente de revisión legal."},
+    "it": {"nav": {"index": "Home", "privacy": "Privacy", "support": "Assistenza", "imprint": "Note legali"},
+           "skip": "Vai al contenuto", "langLabel": "Lingua", "draft": "Bozza — non ancora verificata legalmente."}
+  }
+}
