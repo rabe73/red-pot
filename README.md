@@ -70,6 +70,20 @@ That split is deliberate. The privacy and support URLs are the ones an App Store
 reviewer opens, and a broken build should fail in CI rather than on the live
 page.
 
+Two settings live outside this repository and neither is visible from it:
+
+- **Settings → Pages → Source** must be **GitHub Actions**, not "Deploy from a
+  branch".
+- **Settings → Environments → `github-pages` → Deployment branches** must allow
+  **`main`**.
+
+The second one cost an afternoon. When the branch policy names a branch that is
+not the one deploying, the deploy job is rejected *before it starts*: it fails
+in two seconds with no steps and **no logs at all**, and the reason appears only
+on the job's page in the browser — the Actions API returns nothing. Everything
+else looks healthy, which is what makes it hard to find. If a deploy fails that
+way, check the branch policy first.
+
 ## Under construction
 
 `underConstruction` in `content/site.json` is one switch with two effects: a
