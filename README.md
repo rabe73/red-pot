@@ -51,6 +51,26 @@ recipe corpus (app repository, ADR 0017), and for the same reason.
 The remaining three languages are translated shortly before the first release,
 together — not now, while the wording is still moving.
 
+## The two parts
+
+The front page is built around a split that is not cosmetic, and edits must
+keep it (app repository, ADR 0121):
+
+- **Part one — the free app.** Households, catalogue, staples, shopping day and
+  its inventory, members, shopping list, stock list, messages, and every way of
+  getting a line in: voice, barcode, receipt OCR, geofencing. It establishes the
+  truth about a household. It ships first and costs nothing.
+- **Part two — the week planner.** The plan itself, the Joker, likes, dislikes,
+  intolerances, kitchen equipment, kitchen tips, the recipe composer, events. It
+  turns that truth into a cycle. It ships later and costs money, for the same
+  reason it ships later: a plan can only be judged after weeks at real tables.
+
+**A feature belongs under the heading of its own part.** The Joker in
+particular is part two — it is a meal inside the week plan — and the page led
+with it until this split was written down. Anything that suggests, ranks,
+learns or plans is part two; anything that records, reminds or shops is part
+one.
+
 ## Adding a page
 
 1. Add it to `pages` in `content/site.json`, and its label to `ui.<lang>.nav`
