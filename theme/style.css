@@ -9,7 +9,12 @@
   --rule: #e8e0d3;
   --accent: #d4101a;      /* the pot */
   --accent-fg: #fef2e2;   /* the card behind it */
-  --measure: 34rem;
+  /* Measured, not guessed: at a flat 34rem a wide screen gave 56 characters
+     per line, which is below the comfortable band for prose (roughly 60-75)
+     while leaving 568px empty on each side. So the measure grows with the
+     viewport and stops before the line gets long. Nothing moves below about
+     1100px, where 34rem is already the whole screen. */
+  --measure: clamp(34rem, 22rem + 18vw, 44rem);
 }
 @media (prefers-color-scheme: dark) {
   /* The brand red is too dark to read on a dark ground; lift it rather than
@@ -47,7 +52,8 @@ nav a:last-child { margin-right: 0; }
 nav a[aria-current="page"] { color: var(--fg); text-decoration: underline; }
 nav a:hover, nav a:focus-visible, a:hover, a:focus-visible { color: var(--accent); }
 main { padding-bottom: 3rem; }
-h1 { font-size: 1.9rem; line-height: 1.2; margin: 1.5rem 0 .75rem; }
+/* The heading grows with the column, or it looks mislaid above a wide one. */
+h1 { font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.4rem); line-height: 1.2; margin: 1.5rem 0 .75rem; }
 h2 { font-size: 1.25rem; margin: 2.25rem 0 .5rem; }
 h3 { font-size: 1.05rem; margin: 1.5rem 0 .35rem; }
 p, li { max-width: 100%; }
@@ -63,6 +69,12 @@ a { color: var(--accent); }
 table { border-collapse: collapse; width: 100%; font-size: .95rem; }
 th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .wrap { overflow-x: auto; }
+/* A three-column table wants more room than a paragraph does: at the narrow
+   measure the permission table put "Kamera" on four lines. Once there is space
+   to spare it reaches past the measure on both sides, so the text column
+   itself does not move. */
+@media (min-width: 64rem)  { .wrap { margin-inline: -3rem; } }
+@media (min-width: 100rem) { .wrap { margin-inline: -6rem; } }
 footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; padding-bottom: 3rem; }
 .langs { margin-bottom: .5rem; }
 .fine { color: var(--muted); font-size: .85rem; margin: 0; }
