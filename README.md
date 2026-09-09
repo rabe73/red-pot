@@ -51,25 +51,52 @@ recipe corpus (app repository, ADR 0017), and for the same reason.
 The remaining three languages are translated shortly before the first release,
 together — not now, while the wording is still moving.
 
-## The two parts
+## The boundary, and it runs through consequence
 
-The front page is built around a split that is not cosmetic, and edits must
-keep it (app repository, ADR 0121):
+The front page is built around a split that is not cosmetic, and edits must keep
+it. The line runs through **consequence**, not through content (app repository,
+ADR 0221, which replaced the boundary table of ADR 0121; ADR 0234 narrowed it
+further):
 
-- **Part one — the free app.** Households, catalogue, staples, shopping day and
-  its inventory, members, shopping list, stock list, messages, and every way of
-  getting a line in: voice, barcode, receipt OCR, geofencing. It establishes the
-  truth about a household. It ships first and costs nothing.
-- **Part two — the week planner.** The plan itself, the Joker, likes, dislikes,
-  intolerances, kitchen equipment, kitchen tips, the recipe composer, events. It
-  turns that truth into a cycle. It ships later and costs money, for the same
-  reason it ships later: a plan can only be judged after weeks at real tables.
+- **Free, and it ships first.** Households, catalogue, staples, shopping day and
+  its inventory, members, shopping list, stock list, the four messages, and every
+  way of getting a line in: voice, receipt OCR, geofencing. Plus the week schema,
+  the kitchen profile and *every* household and personal setting — likes,
+  dislikes, intolerances, equipment. It establishes the truth about a household,
+  and lets that household describe itself.
+- **Paid, and it ships later.** Editing the plan — variants, swipes, the Joker —
+  the plan feeding the shopping list and the freezer, the explanations and the
+  recipe view, the cooking screen, kitchen tips, the recipe composer. It turns
+  that truth into a cycle. Same reason for both: a plan can only be judged after
+  weeks at real tables.
+- **Later still.** Cooking events, and a web UI for guests without an Apple
+  device — ADR 0221 moved them out of the paid tier into a third release. The
+  page mentions them only as an outlook, and deliberately does not mention the
+  web UI: that release brings a server and accounts, and the privacy page still
+  states the absence of both as a property of the build.
 
-**A feature belongs under the heading of its own part.** The Joker in
-particular is part two — it is a meal inside the week plan — and the page led
-with it until this split was written down. Anything that suggests, ranks,
-learns or plans is part two; anything that records, reminds or shops is part
-one.
+**The test is whether an act has consequences, not what it is about.** A setting
+is free even when it only matters for planning: the household may say what its
+kitchen can do and how its week looks at no cost. What costs money is a plan
+that *writes* — onto the shopping list, into the freezer, into what the app has
+learned about this household.
+
+**The page no longer says "part one" and "part two".** It reads as a progression:
+start simply, and the fuller description of the household becomes relevant when
+the app should take the week off your hands. Do not reintroduce the labels — the
+split is a rule for deciding what goes where, not a heading.
+
+**The barcode scan is gone** (app repository, ADR 0224), and with it Open Food
+Facts and the app's last outbound call. Siri and geofencing stayed. Nothing on
+this site may mention a barcode, and the privacy page's "no outbound connection"
+now says so as a promise rather than an exception.
+
+**The receipt scan exists in the app and is deliberately not advertised here.**
+Nobody knows yet how well OCR copes with the range of real till receipts, and a
+front page is a promise. It appears in one place only: the camera row of the
+privacy page's permission table, because a permission the app requests has to be
+declared whether or not the marketing mentions it. Do not add it to the front
+page or to the support answers until the accuracy is known.
 
 ## Adding a page
 
