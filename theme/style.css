@@ -9,12 +9,16 @@
   --rule: #e8e0d3;
   --accent: #d4101a;      /* the pot */
   --accent-fg: #fef2e2;   /* the card behind it */
-  /* Measured, not guessed: at a flat 34rem a wide screen gave 56 characters
-     per line, which is below the comfortable band for prose (roughly 60-75)
-     while leaving 568px empty on each side. So the measure grows with the
-     viewport and stops before the line gets long. Nothing moves below about
-     1100px, where 34rem is already the whole screen. */
-  --measure: clamp(34rem, 22rem + 18vw, 44rem);
+  /* A flat 34rem left 568px empty on each side of a wide screen while the
+     three-column table was breaking "Kamera" onto four lines. So the measure
+     grows -- but only in step with the type below it, and that pairing is the
+     whole trick. Measured on a real paragraph (first visual line, by Range,
+     not by guessing an average character): 34rem at 17px was about 65
+     characters, which was already right. Widening the column alone would only
+     have made the line longer; widening both keeps it near 75 while the page
+     itself gets bigger. Nothing moves below about 1000px, where 34rem is the
+     whole screen anyway. */
+  --measure: clamp(34rem, 18rem + 30vw, 54rem);
 }
 @media (prefers-color-scheme: dark) {
   /* The brand red is too dark to read on a dark ground; lift it rather than
@@ -28,6 +32,9 @@ body {
   background: var(--bg);
   color: var(--fg);
   font: 400 1.0625rem/1.65 ui-serif, Georgia, "Iowan Old Style", serif;
+  /* Grows with the measure, so a big screen reads bigger and not merely
+     wider. 17px on a laptop, 21px once there is room for it. */
+  font-size: clamp(1.0625rem, .95rem + .35vw, 1.3125rem);
 }
 .skip {
   position: absolute; left: -9999px;
@@ -69,12 +76,10 @@ a { color: var(--accent); }
 table { border-collapse: collapse; width: 100%; font-size: .95rem; }
 th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
 .wrap { overflow-x: auto; }
-/* A three-column table wants more room than a paragraph does: at the narrow
-   measure the permission table put "Kamera" on four lines. Once there is space
-   to spare it reaches past the measure on both sides, so the text column
-   itself does not move. */
-@media (min-width: 64rem)  { .wrap { margin-inline: -3rem; } }
-@media (min-width: 100rem) { .wrap { margin-inline: -6rem; } }
+/* The permission table used to reach past the measure on wide screens, to get
+   its three columns onto one line each. It looked like it had fallen out of the
+   frame, which it had. The wider measure above is what buys the table its room
+   now, and every edge on the page stays on the same two verticals. */
 footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; padding-bottom: 3rem; }
 .langs { margin-bottom: .5rem; }
 .fine { color: var(--muted); font-size: .85rem; margin: 0; }
