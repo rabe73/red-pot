@@ -12,6 +12,31 @@ Source of truth for the app icon and every derived image on the site.
 Everything in `../assets/` and `icon-1024.png` is rendered from `icon.svg` by
 `tools/makeicons.py`. Do not edit them by hand.
 
+## 2026-09-10: the handles came off, and the crop moved in
+
+The owner asked for the pot without its handles and closer to the edge. Both
+changes are in the vector, not in a bitmap:
+
+* **The handles are cut out of the outline.** The body's outer path goes from
+  30 segments to 19, and the two handle openings — separate subpaths that
+  carried the cream inside each handle — are gone. In their place stands one
+  cubic on each side: vertical where it leaves the rim, and turned onto the
+  direction of the pot wall where it rejoins it, so the seam is
+  tangent-continuous. No cover-up shape, no eraser; the outline itself no
+  longer has handles.
+* **The artwork is scaled 1.55× about the point the owner picked** and the
+  frame cuts what falls outside. That is a transform around the paths, so
+  every size still renders from the vector rather than from a crop of a
+  bitmap.
+
+`mark.svg` got the same surgery with its own numbers — its outline is a
+different trace of the same pot.
+
+**Why the pot lost its handles at all:** on a home screen the question is not
+*what is this* but *do I find it again*, and the handles were the widest, palest
+part of the silhouette. Without them the lid does the recognising. The honest
+cost is that a handleless pot seen head-on reads a little like a lidded jar.
+
 ## How the vector was made
 
 The artwork arrived as a 1024×1024 JPEG. It was recovered rather than redrawn:
