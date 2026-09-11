@@ -91,6 +91,16 @@ Facts and the app's last outbound call. Siri and geofencing stayed. Nothing on
 this site may mention a barcode, and the privacy page's "no outbound connection"
 now says so as a promise rather than an exception.
 
+**The front page says neither what anything costs nor that anything is free,
+and those two silences are one rule.** The page is about the functionality and
+how it builds on itself; money is for the App Store listing and its screenshots
+(owner, 2026-09-11). The asymmetry is the trap: a page that calls the first step
+free while staying quiet about the rest is making a price claim about both, and
+the more misleading half is the silent one. So if either ever comes back, both
+do. The support page is the exception and stays as it is — *"Wer muss ein Abo
+haben?"* is a question somebody arrives with, and the honest place to answer it
+is the page they came to for answers.
+
 **The receipt scan exists in the app and is deliberately not advertised here.**
 Nobody knows yet how well OCR copes with the range of real till receipts, and a
 front page is a promise. It appears in one place only: the camera row of the
@@ -100,9 +110,18 @@ page or to the support answers until the accuracy is known.
 
 ## The one drawing
 
-The three stages on the front page are inline SVG in the fragments, styled from
-`theme/style.css`. It is the only drawing on a site that is otherwise text, and
-it stays that way on four conditions.
+The three stages are inline SVG in the fragments, styled from
+`theme/style.css`. They are the only drawing on a site that is otherwise text,
+and they stay that way on five conditions.
+
+**It is split, and the split is the point.** Stages one and two sit together in
+the middle of the page as a pair, because they are the recurring routine of a
+household. Stage three sits at the end, beside the outlook paragraph, because it
+is *not* the next turn of the same thing — it is an occasion, and standing it
+third in a row of three said the opposite. Its rings stay grey, which is what
+still ties it to the pair a screen away: same household, now with guests. It
+carries no caption of its own down there; the outlook paragraph is the caption,
+and saying it twice would be saying it twice.
 
 **It draws the growth, not the roadmap.** Each panel colours only what its stage
 adds and leaves the earlier rings standing, because that is the claim being
