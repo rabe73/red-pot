@@ -84,6 +84,30 @@ footer { border-top: 1px solid var(--rule); padding-top: 1.25rem; padding-bottom
 .langs { margin-bottom: .5rem; }
 .fine { color: var(--muted); font-size: .85rem; margin: 0; }
 
+/* The three stages, drawn rather than explained. Each panel colours only what
+   its stage adds and leaves the earlier rings standing, because that is the
+   claim: the paid step does not bolt a box on, it widens a circle that was
+   already closed. Deliberately wordless -- the labels are HTML, so they
+   translate, they scale, and a screen reader gets prose instead of a shape.
+   The drawing therefore carries nothing the text does not also say. */
+.stufen { display: grid; gap: 1.75rem; margin: 2rem 0; }
+@media (min-width: 34rem) { .stufen { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; } }
+.stufe svg { width: 100%; max-width: 7.5rem; height: auto; display: block; margin: 0 auto .6rem; }
+.stufe p { margin: 0; font-size: .95rem; color: var(--muted); text-align: center; }
+.stufe b { display: block; color: var(--fg); font-weight: 600; }
+.ring { fill: none; stroke: var(--rule); stroke-width: 3; }
+.ring.on { stroke: var(--accent); }
+.pt { fill: var(--rule); }
+.pt.on { fill: var(--accent); }
+.tip { fill: var(--accent); }
+/* Stufe drei: die Gaeste. Umrissen statt gefuellt heisst "ein andermal, andere
+   Leute" -- der Umriss traegt dort das ganze Argument, deshalb ist er kraeftiger
+   als eine Haarlinie. Die Strichelung ist lang genug, um bei 120px noch als
+   Strichelung zu lesen und nicht als grauer Faden. */
+.pt.ghost { fill: none; stroke: var(--accent); stroke-width: 2.2; }
+.link { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.link.dash { stroke-dasharray: 6 4; }
+
 /* Under construction. Deliberately unmissable and deliberately not dismissible:
    it is on the privacy and imprint pages too, which are the ones that look most
    like a finished product. */
