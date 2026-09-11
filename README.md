@@ -48,8 +48,24 @@ language, not per page, so a French visitor would get a French page title over a
 German privacy policy and no fallback would ever fire. Same rule as the app's
 recipe corpus (app repository, ADR 0017), and for the same reason.
 
-The remaining three languages are translated shortly before the first release,
-together — not now, while the wording is still moving.
+All five languages are written and built. The three added last went in one
+pass from the German, and **nobody who speaks them has read them.** That is the
+one thing to fix before launch day.
+
+The structure is machine-checked against the German — same headings, same
+paragraph count, same table rows, same drawing. But structure is not idiom, and
+a translation nobody has read is precisely the mistake the app repository wrote
+down in ADR 0211: *"English is the app default, and until now nobody had read
+it."* Add to that the timing: they were translated from a German wording that
+had moved four times the same day, so they are a snapshot of a moving target and
+will drift silently, because nobody is reading them to notice.
+
+They are safe to be live meanwhile, and only for one reason: `underConstruction`
+is `true`, which also sets `noindex` and a disallow-all `robots.txt`. **Before
+that switch goes false, one speaker per language reads their four pages.** The
+legal pages of fr, es and it carry the same note the English one does — the
+German version is the authoritative one — and that note is a courtesy, not a
+substitute for having them read.
 
 ## The boundary, and it runs through consequence
 
@@ -204,13 +220,13 @@ Set it to `false` on launch day. Nothing else changes.
 
 ## Status
 
-Content is a first draft. The imprint and privacy pages carry the real provider
-details; only the contact email address is still a placeholder. `brand/README.md`
-records the one remaining icon question — the monogram does not survive a
-favicon, and a simpler small-size cut of the mark is a design decision nobody
-has made yet.
+Content is a first draft. `brand/README.md` records the one remaining icon
+question — the monogram does not survive a favicon, and a simpler small-size cut
+of the mark is a design decision nobody has made yet.
 
- The imprint is a placeholder and must be filled in
-before publishing — a German imprint with missing details is actionable. The
-privacy text describes the real architecture but has not been reviewed by a
-lawyer.
+The imprint and privacy pages carry the real provider details, but the contact
+address is still a placeholder, and the imprint must be complete before
+publishing — a German imprint with missing details is actionable. The privacy
+text describes the real architecture and has not been reviewed by a lawyer; it
+now says so in five languages rather than two, which multiplies that gap rather
+than changing it.
