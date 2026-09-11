@@ -98,6 +98,46 @@ privacy page's permission table, because a permission the app requests has to be
 declared whether or not the marketing mentions it. Do not add it to the front
 page or to the support answers until the accuracy is known.
 
+## The one drawing
+
+The three stages on the front page are inline SVG in the fragments, styled from
+`theme/style.css`. It is the only drawing on a site that is otherwise text, and
+it stays that way on four conditions.
+
+**It draws the growth, not the roadmap.** Each panel colours only what its stage
+adds and leaves the earlier rings standing, because that is the claim being
+made: the paid step does not bolt a box on, it widens something that already ran
+closed. **No numbers, no dates, no feature lists.** A roadmap is the most
+expensive artefact to keep current and the most visible when it is stale — app
+ADR 0121 to 0221 to 0234 moved the boundary twice within hours.
+
+**It carries nothing the text does not also say.** The SVGs are `aria-hidden`
+and the labels are HTML, not text inside the drawing. That is what makes one
+drawing serve both languages, lets the labels translate and scale, and gives a
+screen reader prose instead of a shape. A page with the images switched off
+loses nothing but decoration. If a new fact ever arrives only in the picture,
+the picture is wrong.
+
+**The labels stand without the picture.** They speak of the household — *what it
+has, what it eats, whom it invites* — and never of the circle. A caption that
+has to explain the drawing is leaning on it. "Every week" appears twice and
+makes stages one and two the routine; "not routine" in stage three breaks it on
+purpose.
+
+**Stage three names no platform.** Cooking events, friends, guests who
+contribute — and not the web UI, not accounts, not a server. That release brings
+all three, and the privacy page still states their absence as a property of the
+build. The two get changed together or not at all (see the boundary section
+above).
+
+Two implementation notes, both of which cost something to rediscover.
+`checkhtml.py` accepts inline SVG because `HTMLParser.handle_startendtag` falls
+back to start plus end, so self-closing `<circle/>` balances — but every element
+must be closed or self-closed. And the stroke weights in stage three (outline
+2.2, dash `6 4`) were measured at the rendered 120px, not chosen: at 2.0 and
+`4 4` the outlined guests read as a grey thread in dark mode rather than as an
+outline and a dash. The stylesheet says so at the rule.
+
 ## Adding a page
 
 1. Add it to `pages` in `content/site.json`, and its label to `ui.<lang>.nav`
