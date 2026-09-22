@@ -4,13 +4,49 @@ Source of truth for the app icon and every derived image on the site.
 
 | File | What it is |
 |---|---|
-| `icon.svg` | **The source.** 3 KB of vector, full-bleed, two flat colours |
+| `layers/pot.svg` | **The source.** The pot, solid, no lettering cut out of it |
+| `layers/monogram.svg` | **The source.** The cream ЯP, as a shape rather than a hole |
+| `icon.svg` | The two of them on the cream ground — *composed, not edited* |
 | `mark.svg` | The same pot without the lettering, for small sizes |
-| `icon-1024.png` | Rendered from it for the App Store icon |
+| `icon-1024.png` | Rendered from `icon.svg` for the App Store icon |
 | `logo-original.png` | The delivered JPEG artwork, kept for reference |
 
-Everything in `../assets/` and `icon-1024.png` is rendered from `icon.svg` by
-`tools/makeicons.py`. Do not edit them by hand.
+`tools/makeicons.py` composes `icon.svg` from the layers and renders everything
+in `../assets/` and `icon-1024.png` from it. Do not edit any of those by hand —
+edit the layers.
+
+## 2026-09-22: the layers became the source, and `icon.svg` an output
+
+The app ships a layered icon now: the system gives each layer its own shadow and
+specular edge, and derives the dark, tinted and clear appearances itself instead
+of being handed three bitmaps rendered here.
+
+Only one of the two forms can be the truth, and **it has to be the layered one**.
+Stacking layers into the flat picture is paint order and cannot go wrong. Cutting
+the flat picture apart could — it meant knowing that the body path's *second*
+subpath is the monogram and that two further paths are the bowls of the letters.
+That held exactly as long as nobody re-traced the artwork, which this README has
+been inviting someone to do since the day it was written.
+
+**The monogram stopped being a hole.** It used to be a counter in the pot, with
+the cream ground showing through it; it is now a cream shape drawn on top of an
+opaque pot. The picture is the same and the numbers say so — composed against the
+old vector, both rendered here, **2 pixels of 262 144 differ by more than 8/255
+at 512 px**, all of them on the seam where the monogram meets the pot.
+
+Two things to know when editing the layers:
+
+* **Paint order is bottom first** in an SVG, and an `.icon` document lists its
+  groups **top first**. Getting that backwards puts the monogram behind an opaque
+  pot, where it survives as a faint ghost that reads as a design decision.
+* **The bowls of Я and P are holes in the monogram layer**, cut by `evenodd`
+  between subpaths of one `<path>` element. Split them into separate elements and
+  each fills on its own: the bowls come out cream and the monogram becomes a
+  blob. On a light ground that is invisible — count pixels, don't look.
+
+**The framing is not in here.** The app renders the pot at 82 % of its square;
+the site uses the tight crop. One drawing, two framings, and the framing belongs
+to whoever is framing.
 
 ## 2026-09-10: the handles came off, and the crop moved in
 
