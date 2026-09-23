@@ -50,10 +50,17 @@ utilizable sin ellos; la voz y el escaneo son atajos, no requisitos.</p>
 
 <h2>Ninguna conexión hacia fuera</h2>
 
-<p>La aplicación no llama a ningún servicio — ningún servidor del proveedor,
-ninguna base de datos de productos, ningún tercero.</p>
+<p>La aplicación no llama por sí misma a ningún servicio — ningún servidor del
+proveedor, ninguna base de datos de productos, ningún tercero.</p>
 
-<p>Lo que sale del dispositivo va exclusivamente a Apple: la sincronización a
+<p>Hay una excepción, y la activa usted mismo: cuando comparte una página de
+receta con Red Pot desde su navegador, la aplicación descarga esa única página.
+El sitio web conoce entonces su dirección IP y qué dirección se solicitó — nada
+más. No se envían cookies, ni credenciales, ni nada de la aplicación: ni hogar,
+ni lista de la compra, ni despensa, ni ubicación. Su navegador ya había cargado
+esa misma página segundos antes.</p>
+
+<p>Lo demás que sale del dispositivo va exclusivamente a Apple: la sincronización a
 través de su propio iCloud y, si su dispositivo no procesa el dictado
 localmente, el reconocimiento de voz. Para ello se aplica la política de
 privacidad de Apple.</p>
@@ -61,10 +68,13 @@ privacidad de Apple.</p>
 <h2>Las sugerencias de recetas surgen en el dispositivo</h2>
 
 <p>Las funciones de recetas y de plan semanal se basan en un conjunto de
-componentes de receta que se entrega con la aplicación. No se busca nada en la
-red y no se envía nada a un modelo de lenguaje en la nube. Lo que la aplicación
-aprende sobre sus preferencias permanece en sus dispositivos y en el hogar con
-el que comparte de todos modos — el proveedor no ve nada de ello.</p>
+componentes de receta que se entrega con la aplicación. La aplicación no busca
+en la red, y no se envía nada a un modelo de lenguaje en la nube. Cuando
+comparte una página de receta con Red Pot, un modelo de lenguaje <strong>en su
+dispositivo</strong> reformula la preparación con sus propias palabras; tampoco para
+eso sale nada del dispositivo. Lo que la aplicación aprende sobre sus
+preferencias permanece en sus dispositivos y en el hogar con el que comparte de
+todos modos — el proveedor no ve nada de ello.</p>
 
 <h2>Llevarse o borrar sus datos</h2>
 

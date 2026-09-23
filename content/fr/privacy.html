@@ -51,21 +51,31 @@ conditions.</p>
 
 <h2>Aucune connexion vers l'extérieur</h2>
 
-<p>L'application n'appelle aucun service — aucun serveur de l'éditeur, aucune
-base de données de produits, aucun tiers.</p>
+<p>L'application n'appelle d'elle-même aucun service — aucun serveur de
+l'éditeur, aucune base de données de produits, aucun tiers.</p>
 
-<p>Ce qui quitte l'appareil va exclusivement chez Apple : la synchronisation via
+<p>Il existe une exception, et c'est vous qui la déclenchez : lorsque vous
+partagez une page de recette avec Red Pot depuis votre navigateur, l'application
+récupère cette seule page. Le site apprend alors votre adresse IP et l'adresse
+demandée — rien d'autre. Aucun cookie n'est transmis, aucun identifiant, et rien
+de l'application : ni foyer, ni liste de courses, ni stock, ni localisation.
+Votre navigateur avait de toute façon chargé la même page quelques secondes plus
+tôt.</p>
+
+<p>Ce qui quitte par ailleurs l'appareil va exclusivement chez Apple : la synchronisation via
 votre propre iCloud et, si votre appareil ne traite pas la dictée localement, la
 reconnaissance vocale. La politique de confidentialité d'Apple s'y applique.</p>
 
 <h2>Les suggestions de recettes naissent sur l'appareil</h2>
 
 <p>Les fonctions de recettes et de plan de la semaine s'appuient sur un
-ensemble de composants de recettes livré avec l'application. Rien n'est
-recherché sur le réseau et rien n'est envoyé à un modèle de langue dans le
-cloud. Ce que l'application apprend de vos préférences reste sur vos appareils
-et dans le foyer avec lequel vous partagez de toute façon — l'éditeur n'en voit
-rien.</p>
+ensemble de composants de recettes livré avec l'application. L'application ne
+fait aucune recherche sur le réseau, et rien n'est envoyé à un modèle de langue
+dans le cloud. Lorsque vous partagez une page de recette avec Red Pot, un
+modèle de langue <strong>sur votre appareil</strong> reformule la préparation avec ses
+propres mots ; là non plus rien ne quitte l'appareil. Ce que l'application
+apprend de vos préférences reste sur vos appareils et dans le foyer avec lequel
+vous partagez de toute façon — l'éditeur n'en voit rien.</p>
 
 <h2>Emporter ou supprimer vos données</h2>
 
