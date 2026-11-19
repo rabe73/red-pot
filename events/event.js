@@ -128,6 +128,7 @@ export async function fetchSealed(config, recordName, fetcher = globalThis.fetch
 
 export const WORDS = {
   de: {
+    assigned: "%s (eingeteilt)", newer: "Diese Einladung ist neuer als diese Seite. Lade sie bitte neu.",
     photos: "Fotos", photoBy: "Foto von %s",
     title: "Einladung", by: "von %s", courses: "Menü", tasks: "Aufgaben", open: "noch offen",
     brings: "%s bringt", asOf: "Stand: %s", tell: "Was du mitbringst, sag direkt dem Gastgeber – auf dieser Seite kann man nur lesen.",
@@ -138,6 +139,7 @@ export const WORDS = {
     none: "Noch nichts eingetragen.",
   },
   en: {
+    assigned: "%s (assigned)", newer: "This invitation is newer than this page. Please reload it.",
     photos: "Photos", photoBy: "Photo by %s",
     title: "Invitation", by: "hosted by %s", courses: "Menu", tasks: "Tasks", open: "still open",
     brings: "%s brings", asOf: "As of %s", tell: "Tell the host directly what you are bringing – this page can only be read.",
@@ -148,6 +150,7 @@ export const WORDS = {
     none: "Nothing entered yet.",
   },
   fr: {
+    assigned: "%s (attribué)", newer: "Cette invitation est plus récente que cette page. Recharge-la, s’il te plaît.",
     photos: "Photos", photoBy: "Photo de %s",
     title: "Invitation", by: "chez %s", courses: "Menu", tasks: "Tâches", open: "encore libre",
     brings: "%s apporte", asOf: "État : %s", tell: "Dis directement à l’hôte ce que tu apportes – cette page se lit seulement.",
@@ -158,6 +161,7 @@ export const WORDS = {
     none: "Rien d’inscrit pour l’instant.",
   },
   es: {
+    assigned: "%s (asignado)", newer: "Esta invitación es más nueva que esta página. Vuelve a cargarla, por favor.",
     photos: "Fotos", photoBy: "Foto de %s",
     title: "Invitación", by: "organizado por %s", courses: "Menú", tasks: "Tareas", open: "sin asignar",
     brings: "%s trae", asOf: "Actualizado: %s", tell: "Dile directamente al anfitrión qué vas a traer: esta página solo se puede leer.",
@@ -168,6 +172,7 @@ export const WORDS = {
     none: "Todavía no hay nada.",
   },
   it: {
+    assigned: "%s (assegnato)", newer: "Questo invito è più recente di questa pagina. Ricaricala, per favore.",
     photos: "Foto", photoBy: "Foto di %s",
     title: "Invito", by: "da %s", courses: "Menù", tasks: "Compiti", open: "ancora libero",
     brings: "%s porta", asOf: "Aggiornato al %s", tell: "Di’ direttamente a chi ospita cosa porti: questa pagina si può solo leggere.",
@@ -217,7 +222,10 @@ function list(words, slots) {
   for (const slot of slots) {
     const li = element("li");
     li.appendChild(element("strong", slot.title));
-    if (slot.by) {
+    if (slot.by && slot.assigned) {
+      // The organiser wrote the name on it; nobody has promised it yet.
+      li.appendChild(element("span", " — " + say(words, "assigned", slot.by), "open"));
+    } else if (slot.by) {
       li.appendChild(element("span", " — " + say(words, "brings", slot.by) + (slot.dish ? ": " + slot.dish : "")));
     } else {
       li.appendChild(element("span", " — " + words.open, "open"));
@@ -255,7 +263,9 @@ async function run() {
   let payload;
   try {
     payload = await openSealed(found.sealed, link.key);
-  } catch {
+  } catch (error) {
+    // A copy in a format this page does not know yet is not a dead link.
+    if (error && error.message === "version") return show(main, [element("p", words.newer, "notice")]);
     // A rotated key fetches the same record and cannot open it.
     return show(main, [element("p", words.revoked, "notice")]);
   }
