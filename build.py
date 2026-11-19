@@ -102,6 +102,14 @@ def build(check_only=False):
         os.makedirs(out)
         shutil.copy(os.path.join(THEME, "style.css"), os.path.join(out, "style.css"))
         shutil.copytree(os.path.join(ROOT, "assets"), os.path.join(out, "assets"))
+        # **The event page, copied as it is** (app repository, ADR 0511): one
+        # page for every event, under one path, because the event and its key
+        # travel in the link's fragment and never reach this server. It is
+        # the site's one page with a script -- it decrypts the invitation in
+        # the browser -- and it carries its own words in five languages, so
+        # it is not a content fragment and not translated by this build.
+        shutil.copytree(os.path.join(ROOT, "events"), os.path.join(out, "e"),
+                        ignore=shutil.ignore_patterns("*.test.*", "fixture*"))
         # GitHub Pages runs Jekyll over the artifact unless told not to, and
         # Jekyll silently drops files and directories beginning with an
         # underscore. Nothing here starts with one today; the file costs nothing

@@ -183,6 +183,20 @@ outline and a dash. The stylesheet says so at the rule.
    Open Graph summary. The title comes from the `<h1>`.
 4. `python3 build.py && python3 tools/checkhtml.py dist`
 
+## The event page (`/e/`)
+
+`events/` is copied to `dist/e/` as it is. It is the one page with a script:
+an invitation link from the app (`https://red-pot.de/e/#<event>.<key>`) opens
+here, fetches the event's sealed blob from CloudKit's public database and
+decrypts it in the browser. The key is in the fragment and never reaches this
+server (app repository, ADR 0511 and ADR 0002).
+
+`events/config.js` holds one **read-only CloudKit API token per environment**
+of `iCloud.de.red-pot` — a Development token cannot read Production. The page
+asks Production first, then Development, and skips an environment without a
+token; with none it says event pages are not set up. `node tools/checkevent.mjs` holds the page to a blob the
+app's CryptoKit sealed (`events/fixture.json`).
+
 ## Publishing
 
 GitHub Actions builds **every branch** and checks it: the site builds, the HTML

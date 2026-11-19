@@ -1,0 +1,10 @@
+{
+  "_comment": "Sealed by CryptoKit (AES.GCM, combined = nonce ‖ ciphertext ‖ tag), exactly as the app's EventWebCopy.seal does. The app repository opens the same bytes in EventWebCopyTests; tools/checkevent.mjs opens them with WebCrypto. If either side stops opening them, the two have drifted apart.",
+  "key": "HcBpSJG1DDqNO1tEQY9SHmrvGgD7xc_6p3Uu_X-O4SQ",
+  "sealed": "k1SwoQywf+WOI4F/jGHcgJzd+MY6GXFT7lp2nAHP0GmhKSC8bDpzs8K3viLLmKqpGMmuKHyJf3ia73q2XlxuC7EzTzs3rtsCM944LiZLgus/yrsh7n19Ff+joGSlEQwxx1sML1vB3LOue0Xcia57xNNRVIjHwa9F8gbZW+MPZFvklIWObAMx1RKxkrA/zNM1yX3Jgr22cLZISscLZLy7XlwD4ws1o2Tyto+TAVff5+Zi+YyCxX7EN6DMwfSy1NemVtZD1yMbkMyQkABtuPAd4j3a4m3Rx7M6SWTtMuLDJ7AZHuHZgO5rPtaoXDpxkEkPTaJV4Sdtyf08kigl/iYcGr8suIsFBb1WBgyNkaYWJcA+2wpE",
+  "occasion": "Sommerfest <b>",
+  "firstCourse": "Nachspeise",
+  "firstDish": "Tiramisù",
+  "photo": "qZ3qpUiWv1Kv4MsqiChBGnNpjFn92bCOcwfX+0hrDkfS+0frfiPfTj7EBVa3ZpE=",
+  "photoText": "red pot photo"
+}

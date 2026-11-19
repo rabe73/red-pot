@@ -1,0 +1,9 @@
+/* The event page: the site's own type and colours, plus three lines. */
+.when { font-size: 1.15rem; font-weight: 600; }
+.muted, .open { color: var(--muted); }
+.notice { border-left: 3px solid var(--accent); padding-left: .8rem; }
+.slots { padding-left: 1.1rem; }
+.slots li { margin: .35rem 0; }
+.app { display: inline-block; margin-top: 1.5rem; }
+.photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: .4rem; }
+.photos img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: .4rem; }

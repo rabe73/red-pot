@@ -37,6 +37,11 @@ jobs:
         # renders as a mess rather than as an error, and nobody notices until a
         # reviewer opens the privacy page. Python's own parser catches it here.
         run: python3 tools/checkhtml.py dist
+      - name: The event page opens what the app seals
+        # The one page with a script (app repository, ADR 0511): it decrypts
+        # an invitation in the browser. The fixture was sealed by CryptoKit as
+        # the app seals; if WebCrypto stops opening it, the two have drifted.
+        run: node tools/checkevent.mjs
       - name: No unresolved template placeholders
         run: |
           # -I skips binaries; a PNG will contain those bytes by chance.

@@ -41,11 +41,37 @@ it.</p>
   <tr><td>Contacts</td>
       <td>Inviting household members</td>
       <td>No</td></tr>
+  <tr><td>Calendar (add only)</td>
+      <td>Adding an event you give to your calendar</td>
+      <td>No — Red Pot does not read your calendar</td></tr>
+  <tr><td>Photos (selection)</td>
+      <td>Adding photos to an event</td>
+      <td>Only the photos you choose, into the host's iCloud</td></tr>
 </table>
 </div>
 
 <p>All permissions are optional. The app remains fully usable without them;
 voice and scanning are shortcuts, not requirements.</p>
+
+<h2>Events</h2>
+
+<p>When you give an event, it lives in your iCloud and is shared with the
+guests you invite — like a shared household. Photos take up your iCloud
+storage. The developer sees none of it.</p>
+
+<p>Guests can add their intolerances; the host can also enter them for guests
+without the app. They are counted <strong>without names</strong> and deleted
+after the event. In a small group it can still be guessed who said what; the
+app says so on the same screen.</p>
+
+<p><strong>The web page for guests without an Apple device.</strong> If the host
+shares an event this way, their device writes an encrypted copy — occasion,
+date, courses, tasks, who brings what and the newest photos; no guest list, no
+comments, no intolerances — into Apple's public CloudKit database. The key is
+only in the link, after the "#", and is never sent to red-pot.de. Whoever opens
+the link loads the copy from Apple and decrypts it in their own browser; Apple
+and red-pot.de learn the IP address, not the content. The host can withdraw the
+copy at any time or revoke all links at once.</p>
 
 <h2>No outbound connection</h2>
 
