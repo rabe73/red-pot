@@ -2,6 +2,13 @@
 
 Status: Accepted
 
+> **One exception since 2026-11-17: `/e/`, the event page** (app repository,
+> ADR 0511). It is the one page with a script — it fetches a sealed copy of an
+> event from CloudKit's public database and decrypts it in the browser — and it
+> keeps everything else this record decides: static files, no backend, no
+> routing (the event and its key travel in the fragment), five languages
+> carried by the page itself. Every other page stays content.
+
 ## Context
 
 The site carries five launch languages (EN, DE, FR, ES, IT) and, at launch,
