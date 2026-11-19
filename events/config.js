@@ -15,7 +15,7 @@
 window.RED_POT_EVENTS = {
   container: "iCloud.de.red-pot",
   environments: [
-    { name: "production", apiToken: "" },
+    { name: "production", apiToken: "336375a8b457c05e31dc283eaec2ec8ca79c9f95465022bc5e37dce37bcffeb1" },
     { name: "development", apiToken: "86820a82756a8ab9ebcde780231a9e2ed8942b90bd86a726100d9cf684ae7e2b" },
   ],
 };
